@@ -7,6 +7,7 @@ namespace IdentityChatEmailNight.Controllers
 {
     public class RegisterController : Controller
     {
+        //dependency injection
         private readonly UserManager<AppUser> _userManager;
 
         public RegisterController(UserManager<AppUser> userManager)
