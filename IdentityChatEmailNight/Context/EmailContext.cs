@@ -10,5 +10,6 @@ namespace IdentityChatEmailNight.Context
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-QAU9GPN\\SQLEXPRESS;initial Catalog=EmailChatNightDb;integrated security=true; trust server certificate=true");
         }
+        public DbSet<Message> Messages { get; set; }
     }
 }
