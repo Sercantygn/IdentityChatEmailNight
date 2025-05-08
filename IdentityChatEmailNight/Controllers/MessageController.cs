@@ -27,9 +27,13 @@ namespace IdentityChatEmailNight.Controllers
 
             return View(values2);
         }
-        public IActionResult SendBox()
+        public  async Task<IActionResult> SendBox()
         {
-            return View();
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            string emailValue = values.Email;
+            var sendMessageList = _context.Messages.Where(x=>x.SenderEmail == emailValue).ToList();
+
+            return View(sendMessageList);
         }
         [HttpGet]
         public IActionResult CreateMessage()
@@ -37,8 +41,12 @@ namespace IdentityChatEmailNight.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CreateMessage(Message message)
+        public async Task<IActionResult> CreateMessage(Message message)
         {
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            string senderEmail = values.Email;
+
+            message.SenderEmail = senderEmail;
             message.IsRead = false;
             message.SendDate=DateTime.Now;
             _context.Messages.Add(message);

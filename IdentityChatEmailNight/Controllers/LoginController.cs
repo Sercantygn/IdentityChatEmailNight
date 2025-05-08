@@ -25,7 +25,7 @@ namespace IdentityChatEmailNight.Controllers
             var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, true);
             if (result.Succeeded)
             {
-                return RedirectToAction("Inbox", "Message");
+                return RedirectToAction("ProfileDetail", "Profile");
             }
             return View();
 
